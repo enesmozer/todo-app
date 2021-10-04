@@ -1,6 +1,8 @@
 <template>
-  <div>
-    
+  <div class="home">
+    <div class="title">
+      Welcome to Todo List
+    </div>
   </div>
 </template>
 
@@ -11,3 +13,15 @@ export default {
   components: {},
 };
 </script>
+<style lang="scss" scoped>
+.home {
+    .title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 4rem !important;
+        margin-block: 5rem;
+        height: 5rem;
+    }
+}
+</style>
