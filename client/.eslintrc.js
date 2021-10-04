@@ -1,70 +1,22 @@
 module.exports = {
-    root: true,
-    env: {
-      node: true,
-    },
-    extends: [
-      'plugin:vue/strongly-recommended',
-      '@vue/airbnb',
-    ],
-    rules: {
-      'padding-line-between-statements': [
-        'error',
-        { blankLine: 'always', prev: '*', next: 'return' },
-      ],
-      'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-      'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-      'no-param-reassign': ['error', {
-        props: true,
-        ignorePropertyModificationsFor: [
-          'state', // for vuex state
-          'acc', // for reduce accumulators
-        ],
-      }],
-      'import/prefer-default-export': 0,
-      'vue/max-attributes-per-line': 0,
-      'max-len': ['error', {
-        code: 200,
-        ignoreComments: true,
-        ignoreStrings: true,
-        ignoreRegExpLiterals: true,
-      }],
-      'vue/order-in-components': ['error', {
-        order: [
-          'el',
-          'name',
-          'parent',
-          'functional',
-          ['delimiters', 'comments'],
-          ['props', 'propsData'],
-          'mixins',
-          ['components', 'directives', 'filters'],
-          'data',
-          'computed',
-          'methods',
-          'extends',
-          'inheritAttrs',
-          'model',
-          'watch',
-          'LIFECYCLE_HOOKS',
-          ['template', 'render'],
-          'renderError',
-        ],
-      }],
-    },
-    parserOptions: {
-      parser: 'babel-eslint',
-    },
-    settings: {
-      'import/resolver': {
-        'import/extensions': [
-          '.js',
-          '.jsx',
-          '.mjs',
-          '.ts',
-          '.tsx',
-          '.vue',
-        ],
+  root: true,
+  env: {
+    node: true,
+  },
+  extends: ['plugin:vue/strongly-recommended', '@vue/airbnb'],
+  parserOptions: {
+    parser: 'babel-eslint',
+  },
+  rules: {
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+  },
+  overrides: [
+    {
+      files: ['**/__tests__/*.{j,t}s?(x)', '**/tests/unit/**/*.spec.{j,t}s?(x)'],
+      env: {
+        jest: true,
       },
     },
-  };
+  ],
+};
