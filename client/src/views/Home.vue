@@ -27,16 +27,16 @@
           />
           <v-spacer />
           <v-dialog
-            v-model="dialog"
+            v-model="isDialogOpen"
             max-width="500px"
           >
-            <template v-slot:activator="{ on, attrs }">
+            <template v-slot:activator="{ attrs }">
               <v-btn
                 color="primary"
                 dark
                 class="mb-2"
                 v-bind="attrs"
-                v-on="on"
+                @click="toggleDialog"
               >
                 New Item
               </v-btn>
@@ -70,7 +70,6 @@ export default {
   },
   data() {
     return {
-      dialog: false,
       search: '',
       headers: [
         { text: 'Name', value: 'name' },
@@ -79,10 +78,10 @@ export default {
     };
   },
   computed: {
-    ...mapState(['allTodos']),
+    ...mapState(['allTodos', 'isDialogOpen']),
   },
   methods: {
-    ...mapActions(['fetchTodos']),
+    ...mapActions(['fetchTodos', 'toggleDialog']),
     initialize() {
       this.fetchTodos();
     },
