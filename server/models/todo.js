@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
-
 const todoSchema = new Schema({
   name: {
     type: String,
@@ -9,6 +8,10 @@ const todoSchema = new Schema({
   },
   description: {
     type: String,
+  },
+  createdAt: {
+    type: Date,
+    default : Date.now()
   },
 });
 
