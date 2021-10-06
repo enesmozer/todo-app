@@ -18,3 +18,5 @@ app.listen(port, () =>
     .then(console.log(`Listening on port ${port}`))
     .catch((err) => console.log(err))
 );
+
+export default app;
