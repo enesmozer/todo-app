@@ -1,17 +1,11 @@
 import express from 'express';
-import Todo from '../models/todo.js';
+import { queryTodo, addTodo } from '../service/todoService';
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
   try {
-    const todos = await Todo.find();
-    res.json(
-      todos.map((todo) => ({
-        id: todo['_id'],
-        name: todo.name,
-      }))
-    );
+    res.json(queryTodo());
   } catch (error) {
     res.send(error);
   }
@@ -19,8 +13,8 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const todo = await new Todo(req.body).save();
-    res.status(201).json(todo);
+    const newTodo = addTodo(req.body)
+    res.status(201).json(newTodo);
   } catch (error) {
     res.send(error);
   }
