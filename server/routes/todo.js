@@ -1,11 +1,11 @@
 import express from 'express';
-import { queryTodo, addTodo } from '../service/todoService';
+import { queryTodo, addTodo } from '../service/todoService.js';
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
   try {
-    res.json(queryTodo());
+    res.json(await queryTodo());
   } catch (error) {
     res.send(error);
   }
@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const newTodo = addTodo(req.body)
+    const newTodo = await addTodo(req.body)
     res.status(201).json(newTodo);
   } catch (error) {
     res.send(error);
