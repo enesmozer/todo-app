@@ -6,8 +6,7 @@
     <v-data-table
       :headers="headers"
       :items="allTodos"
-      sort-by="calories"
-      class="elevation-1"
+      class="elevation-1 table"
     >
       <template v-slot:top>
         <v-toolbar flat>
@@ -107,9 +106,8 @@ export default {
     margin-block: 2.5rem;
     height: 5rem;
   }
-  .list {
+  .table {
     width: 75%;
-    position: relative;
   }
   .new-todo {
     position: absolute;
