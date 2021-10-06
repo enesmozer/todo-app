@@ -1,17 +1,28 @@
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   data: () => ({
-    valid: true,
+    valid: false,
     name: '',
-    nameRules: [
-      (v) => !!v || 'Name is required',
-    ],
+    nameRules: [(v) => !!v || 'Name is required'],
     description: '',
+    snackbar: false,
+    isTop: true,
   }),
 
   methods: {
+    ...mapActions(['addTodo']),
     onSubmit() {
-      this.$refs.form.validate();
+      if (this.valid) {
+        this.addTodo({
+          name: this.name,
+          description: this.description,
+        }).then(() => {
+          this.$refs.form.reset();
+          this.snackbar = true;
+        });
+      }
     },
   },
 };
@@ -41,7 +52,19 @@ export default {
     >
       Submit
     </v-btn>
+    <v-snackbar
+      v-model="snackbar"
+      timeout="2000"
+      color="success"
+      :top="isTop"
+      content-class="notification"
+    >
+      Operation Successfull
+    </v-snackbar>
   </v-form>
 </template>
-<style lang="">
+<style lang="scss">
+.notification {
+  font-size: 2rem;
+}
 </style>
