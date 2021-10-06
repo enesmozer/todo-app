@@ -6,6 +6,7 @@
     <v-data-table
       :headers="headers"
       :items="allTodos"
+      :search="search"
       class="elevation-1 table"
     >
       <template v-slot:top>
