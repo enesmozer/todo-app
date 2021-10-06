@@ -3,73 +3,74 @@
     <div class="title">
       Welcome to Todo List
     </div>
-    <v-dialog
-      transition="dialog-top-transition"
-      max-width="600"
+    <v-data-table
+      :headers="headers"
+      :items="allTodos"
+      sort-by="calories"
+      class="elevation-1"
     >
-      <template v-slot:activator="{ on, attrs }">
+      <template v-slot:top>
+        <v-toolbar flat>
+          <v-toolbar-title>
+            <v-text-field
+              v-model="search"
+              append-icon="mdi-magnify"
+              label="Search"
+              single-line
+              hide-details
+            />
+          </v-toolbar-title>
+          <v-divider
+            class="mx-4"
+            inset
+            vertical
+          />
+          <v-spacer />
+          <v-dialog
+            v-model="dialog"
+            max-width="500px"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                color="primary"
+                dark
+                class="mb-2"
+                v-bind="attrs"
+                v-on="on"
+              >
+                New Item
+              </v-btn>
+            </template>
+            <v-card class="form-card">
+              <add-todo />
+            </v-card>
+          </v-dialog>
+        </v-toolbar>
+      </template>
+      <template v-slot:no-data>
         <v-btn
-          color="info"
-          elevation="2"
-          class="new-todo"
-          v-bind="attrs"
-          v-on="on"
+          color="primary"
+          @click="initialize"
         >
-          Add New Todo
+          Reset
         </v-btn>
       </template>
-      <template v-slot:default="dialog">
-        <v-card>
-          <v-toolbar
-            color="primary"
-            dark
-          >
-            Add New Todo
-          </v-toolbar>
-          <v-card-text>
-            <div class="text-h2 pa-12">
-              Hello world!
-            </div>
-          </v-card-text>
-          <v-card-actions class="justify-end">
-            <v-btn
-              text
-              @click="dialog.value = false"
-            >
-              Close
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </template>
-    </v-dialog>
-    <v-card class="list">
-      <v-card-title>
-        <v-text-field
-          v-model="search"
-          append-icon="mdi-magnify"
-          label="Search"
-          single-line
-          hide-details
-        />
-      </v-card-title>
-      <v-data-table
-        :headers="headers"
-        :items="allTodos"
-        :search="search"
-        class="table"
-      />
-    </v-card>
+    </v-data-table>
   </div>
 </template>
 <script>
 import { mapActions, mapState } from 'vuex';
+import AddTodo from '@/components/AddTodo.vue';
 
 export default {
   name: 'Home',
 
-  components: {},
+  components: {
+    AddTodo,
+  },
   data() {
     return {
+      dialog: false,
       search: '',
       headers: [
         { text: 'Name', value: 'name' },
@@ -82,12 +83,12 @@ export default {
   },
   methods: {
     ...mapActions(['fetchTodos']),
-    getTodos() {
+    initialize() {
       this.fetchTodos();
     },
   },
   created() {
-    this.getTodos();
+    this.initialize();
   },
 };
 </script>
@@ -108,13 +109,16 @@ export default {
   }
   .list {
     width: 75%;
+    position: relative;
   }
   .new-todo {
-    align-self: flex-end;
-    margin-right: 4rem;
-    transform: translateX(-78%);
-    margin-bottom: 2rem;
+    position: absolute;
+    right: 1rem;
+    margin-block: 2rem;
   }
+}
+.form-card {
+  padding: 3rem;
 }
 .v-data-table::v-deep th {
   font-size: 1.5rem !important;
