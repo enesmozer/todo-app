@@ -29,6 +29,7 @@
           <v-dialog
             v-model="isDialogOpen"
             max-width="500px"
+            persistent
           >
             <template v-slot:activator="{ attrs }">
               <v-btn

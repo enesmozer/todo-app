@@ -12,7 +12,7 @@ export default {
   }),
 
   methods: {
-    ...mapActions(['addTodo']),
+    ...mapActions(['addTodo', 'toggleDialog']),
     onSubmit() {
       if (this.valid) {
         this.addTodo({
@@ -23,6 +23,10 @@ export default {
           this.snackbar = true;
         });
       }
+    },
+    closeDialog() {
+      this.$refs.form.reset();
+      this.toggleDialog();
     },
   },
 };
@@ -51,6 +55,13 @@ export default {
       @click="onSubmit"
     >
       Submit
+    </v-btn>
+    <v-btn
+      color="primary"
+      class="mr-4"
+      @click="closeDialog"
+    >
+      Close
     </v-btn>
     <v-snackbar
       v-model="snackbar"
