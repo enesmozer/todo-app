@@ -7,6 +7,9 @@ const todoSchema = new Schema({
     type: String,
     required: true,
   },
+  description: {
+    type: String,
+  },
 });
 
 export default mongoose.model('todo', todoSchema);
