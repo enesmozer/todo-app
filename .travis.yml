@@ -2,9 +2,7 @@ language: node_js
 services: 
     - docker
 before_install: 
-    - cd server
-    - docker build -t server:     
+    - docker build -t server ./server:     
     - docker run -e CI=true server
-    - cd ../client
-    - docker build -t client:     
+    - docker build -t client ./client:     
     - docker run -e CI=true client  
