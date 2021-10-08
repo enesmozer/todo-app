@@ -12,12 +12,6 @@ module.exports = {
   'e2e tests using page objects': (browser) => {
     const homepage = browser.page.homepage();
     homepage.waitForElementVisible('@appContainer');
-
-    const { app } = homepage.section;
     browser.end();
-  },
-
-  'verify if string "e2e-nightwatch" is within the cli plugin links': (browser) => {
-    const homepage = browser.page.homepage();
   },
 };
