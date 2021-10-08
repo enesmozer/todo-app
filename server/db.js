@@ -6,7 +6,10 @@ const connection = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     };
-    await mongoose.connect(process.env.MONGO_URI, connectionParams);
+    await mongoose.connect(
+      'mongodb+srv://admin:12345@todoapp.4wcql.mongodb.net/todo?retryWrites=true&w=majority',
+      connectionParams
+    );
     console.log('Connected to database.');
   } catch (error) {
     console.log('Could not connect to database.', error);
