@@ -7,7 +7,6 @@ export default {
     name: '',
     nameRules: [(v) => !!v || 'Name is required'],
     description: '',
-    snackbar: false,
     isTop: true,
   }),
 
@@ -20,7 +19,6 @@ export default {
           description: this.description,
         }).then(() => {
           this.$refs.form.reset();
-          this.snackbar = true;
         });
       }
     },
@@ -36,22 +34,26 @@ export default {
     ref="form"
     v-model="valid"
     lazy-validation
+    class="todo-form"
   >
     <v-text-field
       v-model="name"
       :rules="nameRules"
       label="Name"
       required
+      data-name
+      class="name-input"
     />
-    <v-textarea
-      name="input-7-1"
+    <v-text-field
       v-model="description"
       label="Description"
+      data-description
+      class="desc-input"
     />
     <v-btn
       :disabled="!valid"
       color="success"
-      class="mr-4"
+      class="submit-button mr-4"
       @click="onSubmit"
     >
       Submit
@@ -63,15 +65,6 @@ export default {
     >
       Close
     </v-btn>
-    <v-snackbar
-      v-model="snackbar"
-      timeout="2000"
-      color="success"
-      :top="isTop"
-      content-class="notification"
-    >
-      Operation Successfull
-    </v-snackbar>
   </v-form>
 </template>
 <style lang="scss">

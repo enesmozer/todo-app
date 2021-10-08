@@ -35,7 +35,7 @@
               <v-btn
                 color="primary"
                 dark
-                class="mb-2"
+                class="mb-2 new-item"
                 v-bind="attrs"
                 @click="toggleDialog"
               >
