@@ -11,7 +11,7 @@ app.use(json());
 app.use(cors());
 app.use('/api/v1/todos', todos);
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () =>
   connection()
