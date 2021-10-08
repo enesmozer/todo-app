@@ -4,6 +4,7 @@ import axios from 'axios';
 import { SET_ALL_TODOS, ADD_DIALOG } from './constants';
 
 Vue.use(Vuex);
+axios.defaults.withCredentials = true;
 const http = axios.create({
   baseURL: 'http://localhost:5000/api/v1/',
 });
