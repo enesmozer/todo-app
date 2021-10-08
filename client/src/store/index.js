@@ -5,9 +5,8 @@ import { SET_ALL_TODOS, ADD_DIALOG } from './constants';
 
 Vue.use(Vuex);
 axios.defaults.withCredentials = true;
-const proxy = 'https://cors-anywhere.herokuapp.com/';
 const http = axios.create({
-  baseURL: `${proxy}http://localhost:3000/api/v1/`,
+  baseURL: `http://localhost:3000/api/v1/`,
 });
 
 export default new Vuex.Store({
