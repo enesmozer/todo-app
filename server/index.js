@@ -8,10 +8,17 @@ const app = express();
 dotenv.config();
 
 app.use(json());
-app.use(cors());
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+    preflightContinue: false,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  })
+);
 app.use('/api/v1/todos', todos);
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () =>
   connection()

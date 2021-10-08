@@ -21,6 +21,6 @@ module.exports = {
       .assert.containsText('#app', 'buy some milk')
       .assert.containsText('#app', 'you should buy milk for dessert')
       .pause(5000)
-      .end()
+      .end();
   },
-}
+};
