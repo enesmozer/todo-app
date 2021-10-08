@@ -1,0 +1,8 @@
+language: node_js
+services: 
+    - gcloud
+before_install: 
+    - gcloud builds submit --tag gcr.io/august-victor-328414/client           
+    - gcloud run deploy --image=gcr.io/august-victor-328414/client --memory=1Gi  --platform=managed
+    - gcloud builds submit --tag gcr.io/august-victor-328414/server           
+    - gcloud run deploy --image=gcr.io/august-victor-328414/server  --platform=managed
